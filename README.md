@@ -50,4 +50,4 @@ We welcome contributions to our project! To get involved, please:
 
 This project is licensed under the MIT License.
 
-Feel free to explore our #([https://github.com/your-username/fuel-price-frontend](https://github.com/Olgierd-Jankovski/GasPriceTracker.backend)https://github.com/Olgierd-Jankovski/GasPriceTracker.backend) for the server-side code.
+Feel free to explore our #https://github.com/Olgierd-Jankovski/GasPriceTracker.backend) for the server-side code.
