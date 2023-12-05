@@ -1,5 +1,6 @@
 using Gas.Core;
 using Gas.DB;
+using Microsoft.AspNet.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,8 @@ builder.Services.AddTransient<IStationServices, StationServices>();
 builder.Services.AddTransient<ITypeServices, TypeServices>(); // type is a fuel type
 builder.Services.AddTransient<ILocationServices, LocationServices>(); // location is a address
 builder.Services.AddTransient<IPriceServices, PriceServices>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IPasswordHasher, PasswordHasher>();
 
 builder.Services.AddCors(options =>
 {
