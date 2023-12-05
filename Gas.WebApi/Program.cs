@@ -1,7 +1,10 @@
 using Gas.Core;
 using Gas.DB;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +27,25 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
         });
 });
+
+var secret = Environment.GetEnvironmentVariable("JWT_SECRET");
+var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = issuer,
+            ValidateAudience = false,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret))
+        };
+    });
 
 builder.Services.AddControllers();
 
@@ -52,14 +74,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
 app.UseRouting();
 
 // lets add a middleware to handle CORS
 app.UseCors("TrackerPolicy");
+
+app.UseHttpsRedirection();
+
+app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {

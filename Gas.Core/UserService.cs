@@ -1,5 +1,6 @@
 ﻿using Gas.Core.CustomExceptions;
 using Gas.Core.DTO;
+using Gas.Core.Utilities;
 using Gas.DB;
 using Microsoft.AspNet.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -31,7 +32,7 @@ namespace Gas.Core
             return new AuthenticatedUser()
             {
                 Username = user.Name,
-                Token = "test token"
+                Token = JwtGenerator.GenerateUserToken(user.Name)
             };
         }
 
@@ -53,7 +54,7 @@ namespace Gas.Core
             return new AuthenticatedUser
             {
                 Username = user.Name,
-                Token = "test token"
+                Token = JwtGenerator.GenerateUserToken(user.Name)
             };
         }
     }

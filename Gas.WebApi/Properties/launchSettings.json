@@ -16,7 +16,9 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7242;http://localhost:5084",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "JWT_SECRET": "Super duper secret",
+        "JWT_ISSUER": "Gas Price Tracker"
       },
       "UserSecretsId": "6e44239d-9f07-4520-9d09-3ebc3ee8ea76"
     },
@@ -25,7 +27,9 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "JWT_SECRET": "Super duper secret",
+        "JWT_ISSUER": "Gas Price Tracker"
       }
     }
   }
