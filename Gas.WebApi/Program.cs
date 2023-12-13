@@ -16,6 +16,8 @@ builder.Services.AddTransient<ILocationServices, LocationServices>(); // locatio
 builder.Services.AddTransient<IPriceServices, PriceServices>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IPasswordHasher, PasswordHasher>();
+builder.Services.AddTransient<ISavingServices, SavingServices>();
+builder.Services.AddTransient<IExpenseServices, ExpenseServices>();
 
 builder.Services.AddCors(options =>
 {

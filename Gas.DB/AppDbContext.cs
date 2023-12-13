@@ -12,5 +12,7 @@ namespace Gas.DB
         public DbSet<Station> Stations { get; set; }
         public DbSet<Type> Types { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Expenses> Expenses { get; set; }
+        public DbSet<Savings> Savings { get; set; }
     }
 }
