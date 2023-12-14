@@ -13,5 +13,10 @@ namespace Gas.DB
 
         [ForeignKey("TypeId")]
         public Type? Type { get; set; }
+
+        public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public User? User { get; set; }
     }
 }

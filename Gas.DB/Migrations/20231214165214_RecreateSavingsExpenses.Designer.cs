@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gas.DB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231214160036_FixedConfigurationOfChanges")]
-    partial class FixedConfigurationOfChanges
+    [Migration("20231214165214_RecreateSavingsExpenses")]
+    partial class RecreateSavingsExpenses
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,9 +39,14 @@ namespace Gas.DB.Migrations
                     b.Property<int>("TypeId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("TypeId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Expenses");
                 });
@@ -111,9 +116,14 @@ namespace Gas.DB.Migrations
                     b.Property<int>("TypeId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("TypeId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Savings");
                 });
@@ -185,7 +195,15 @@ namespace Gas.DB.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Gas.DB.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Type");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Gas.DB.Location", b =>
@@ -226,7 +244,15 @@ namespace Gas.DB.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Gas.DB.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Type");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
