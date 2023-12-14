@@ -9,7 +9,9 @@ namespace Gas.DB
         public int Id { get; set; }
         public float Amount { get; set; }
 
+        public int TypeId {  get; set; }
+
         [ForeignKey("TypeId")]
-        public Type Type { get; set; }
+        public Type? Type { get; set; }
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gas.DB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231212203026_CreateExpensesSavingsTable")]
-    partial class CreateExpensesSavingsTable
+    [Migration("20231214160036_FixedConfigurationOfChanges")]
+    partial class FixedConfigurationOfChanges
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
