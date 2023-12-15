@@ -1,10 +1,10 @@
-﻿using Gas.DB;
+﻿using Gas.Core.DTO;
 
 namespace Gas.Core
 {
     public interface ISavingServices
     {
-        Savings AddSaving(Savings saving);
+        Savings AddSaving(DB.Savings saving);
 
         List<Savings> GetSavings();
         Savings GetSavingById(int savingsId);

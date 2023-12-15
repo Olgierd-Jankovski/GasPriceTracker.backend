@@ -1,11 +1,11 @@
-﻿using Gas.DB;
-using Gas.Core;
+﻿using Gas.Core;
+using Gas.Core.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Runtime.InteropServices;
-using Microsoft.Identity.Client;
 
 namespace Gas.WebApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ExpensesController : ControllerBase
@@ -28,22 +28,12 @@ namespace Gas.WebApi.Controllers
         {
             return Ok(_expenseServices.GetExpenseById(id));
         }
-        public class ExpensePost
-        {
-            public int Id { get; set; }
-            public float Amount { get; set; }
-            public int TypeId {  get; set; }
-        }
 
         [HttpPost]
-        public IActionResult AddExpense(Expenses expense)
+        public IActionResult AddExpense(DB.Expenses expense)
         {
-            /*Expenses expense = new Expenses();
-            expense.Amount = expensePost.Amount;
-            expense.TypeId = expensePost.TypeId;*/
-
-            _expenseServices.AddExpense(expense);
-            return CreatedAtRoute("GetExpense", new { id = expense.Id }, expense);
+            var newExpense = _expenseServices.AddExpense(expense);
+            return CreatedAtRoute("GetExpense", new { id = newExpense.Id }, newExpense);
         }
 
     }

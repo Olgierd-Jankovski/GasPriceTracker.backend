@@ -1,9 +1,11 @@
 ﻿using Gas.Core;
 using Gas.DB;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gas.WebApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class SavingsController : ControllerBase
@@ -30,8 +32,8 @@ namespace Gas.WebApi.Controllers
         [HttpPost]
         public IActionResult AddSaving(Savings saving)
         {
-            _savingServices.AddSaving(saving);
-            return CreatedAtRoute("GetSaving", new {id = saving.Id}, saving);
+            var newSaving = _savingServices.AddSaving(saving);
+            return CreatedAtRoute("GetSaving", new {id = newSaving.Id}, newSaving);
         }
 
     }
