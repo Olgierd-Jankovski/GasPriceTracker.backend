@@ -18,10 +18,16 @@ namespace Gas.WebApi.Controllers
             _statisticsServices = statisticsServices;
         }
 
-        [HttpGet]
+        [HttpGet("expenses")]
         public IActionResult GetExpenseAmountPerCategory()
         {
             return Ok(_statisticsServices.GetExpenseAmountPerCategory());
+        }
+
+        [HttpGet("savings")]
+        public IActionResult GetSavingAmountPerCategory()
+        {
+            return Ok(_statisticsServices.GetSavingAmountPerCategory());
         }
     }
 }

@@ -30,5 +30,19 @@ namespace Gas.Core
                 .GroupBy(e => e.TypeName)
                 .ToDictionary(e => e.Key, e => e.Sum(x => x.Amount))
                 .Select(x => new KeyValuePair<string, float>(x.Key, x.Value));
+
+        public IEnumerable<KeyValuePair<string, float>> GetSavingAmountPerCategory() =>
+            _context.Savings
+                .Where(s => s.UserId == _user.Id)
+                .Join(
+                    _context.Types,
+                    saving => saving.TypeId,
+                    type => type.Id,
+                    (saving, type) => new { TypeName = type.Name, Amount = saving.Amount }
+                    )
+            .GroupBy(s => s.TypeName)
+            .ToDictionary(s => s.Key, s => s.Sum(x => x.Amount))
+            .Select(x => new KeyValuePair<string, float>(x.Key, x.Value));
     }
+
 }
