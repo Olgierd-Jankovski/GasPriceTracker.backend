@@ -2,6 +2,8 @@
 
 This repository houses the backend code for the Fuel Price Tracking web application. The application is designed to track and manage fuel prices at various locations and provide users with real-time updates on fuel costs.
 
+### `Front-end` part is located in the following repository https://github.com/Olgierd-Jankovski/tracker.frontend
+
 ## Overview
 
 Fuel Price Tracking is a full-stack web application consisting of both frontend (client-side) and backend(server-side) components. The backend, found in this repository, handles data storage, API endpoints, and communication with the frontend.
